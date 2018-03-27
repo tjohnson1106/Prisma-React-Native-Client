@@ -14,6 +14,15 @@ class Signup extends Component {
 
   submit = () => {};
 
+  onChangeText = (key, value) => {
+    this.setState(state => ({
+      values: {
+        ...state,
+        [key]: value
+      }
+    }));
+  };
+
   render() {
     const { values: { name, username, password } } = this.state;
 
@@ -27,13 +36,20 @@ class Signup extends Component {
         }}
       >
         <View style={{ width: 200 }}>
-          <TextInput value={name} style={styles.field} placeholder="name" />
           <TextInput
+            onChangeText={text => this.onChangeText("name", text)}
+            value={name}
+            style={styles.field}
+            placeholder="name"
+          />
+          <TextInput
+            onChangeText={text => this.onChangeText("username", text)}
             value={username}
             style={styles.field}
             placeholder="email"
           />
           <TextInput
+            onChangeText={text => this.onChangeText("password", text)}
             value={password}
             style={styles.field}
             placeholder="password"
